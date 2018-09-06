@@ -1,0 +1,182 @@
+body {
+    font-family: 'Libre Franklin', sans-serif;
+    margin: 0px;
+    }
+    
+nav {
+    text-align: center;
+}
+
+.nav-top {
+    text-align:left;
+    height: 30px;
+    width: 1000px;
+    margin:0 auto;
+}
+
+.nav-top ul {
+    list-style-type: none;
+    margin: 5px 0 0 0;
+    padding-left: 0px;
+}
+
+.nav-top ul li {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.nav-top ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-main-wrapper {
+    background-color: #007DC4;
+    height: 130px;
+}
+
+.nav-main {
+    color: #fff;
+    width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.main-logo {
+    width: 252px; 
+    display: inline-block;
+    margin: 40px 20px 0 0;
+}
+
+.main-logo p{
+    font-size: 1.1em;
+    margin: 5px 0 0 0;
+    text-align: center;
+}
+
+.search-box {
+    display: inline-block;
+    vertical-align: top;
+    margin: 40px 20px 0 0;
+}
+
+
+    .search-box input {
+    height: 40px;
+    width: 340px;
+    padding-left: 10px;
+}
+
+.search-box button {
+    background-color: #005D91;
+    color: #fff;
+    border: 0px;
+    height: 46px;
+    width: 75px;
+    position: relative;
+    left: -6px;
+}
+
+.search-box i {
+    color: #000;
+    margin: 0 5px 0 0;
+    font-size: 1.5em;
+    line-height: 50%;
+}
+
+.menu-icon-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    width: 80px;
+}
+
+.menu-icon {
+    text-align: center;
+    display: inline-block;
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+
+.menu-icon i {
+    color: #000;
+    font-size: 2em;
+}
+
+.count {
+    display: inline-block;
+    background-color: #005D91;
+    padding: 2px;
+    font-size: 0.7em;
+    z-index: 2;
+    position: relative;
+    bottom: 75px;
+    right: 10px;
+}
+
+.nav-menu-wrapper {
+    background-color: #005D91;
+    margin: 0px;
+} 
+
+.nav-menu {
+    width: 1000px;
+    margin: 0 auto;
+}
+.nav-menu ul {
+    margin: 0px;
+    list-style-type: none;
+    text-align: left;
+    padding-left: 0;
+    font-size: 0;
+}
+
+.nav-menu ul li {
+    margin-left: 0;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    border-right: 1px solid #fff;
+    padding: 0 8.5px;
+    letter-spacing: 0.8px;
+    box-sizing: border-box;
+   
+}
+
+.nav-menu ul li:hover {
+    background-color: #fff;
+    color: #005D91;
+    border-top: 3px solid #00A5FF;
+    line-height: 47px;
+    height: 53px;
+}
+
+.sub-menu {
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.column {
+    width: 16%;
+    display: inline-block;
+    text-align: left;
+}
+
+.column h3 {
+    color: #005D91;
+    font-size: 1em;;
+}
+
+.column ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+    
