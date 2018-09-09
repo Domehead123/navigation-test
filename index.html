@@ -9,11 +9,14 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    Access-Control-Allow-Origin: https://foo.app.moxio.com
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: POST
+Access-Control-Allow-Headers: Content-Type 
 </head>
 
 <body>
     <nav>
-
         <div class="nav-top">
             <ul>
                 <li><a href="#">Ideas & Advice</a></li>
@@ -23,116 +26,651 @@
                 <li><a href="#">About</a></li>
             </ul>
         </div>
-
         <div class="nav-main-wrapper">
             <div class="nav-main">
                 <div class="main-logo ">
                     <img src="assets/images/sydenhams.png" />
                     <p>Timber & Builders merchants</p>
                 </div>
-                <form class="search-box">
-                    <input type="text " placeholder="Search products "></input>
-                    <button type="submit "><i class="fas fa-search "></i>Find</button>
+                <form autocomplete="off" class="search-box">
+                    <div class="autocomplete">
+                        <input id="myInput" type="text" placeholder="Search products">
+                    </div>
+                    <button class "search-button" type="submit"><i class="fas fa-search"></i>Find</button>
                 </form>
-                <div class="menu-icon-wrapper">
-                    <div class="menu-icon "><i class="fas fa-map-marker-alt "></i>
-                        <p></p>Find a<br/> store</p>
-                    </div>
+                <div class="mobile-icon-wrapper">
+                    <a href="javascript:void(0);" onclick="showMobileMenu()">
+                        <div class="mobile-menu-icon"><i class="fas fa-bars"></i>
+                            <p>Menu</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="menu-icon-wrapper">
-                    <div class="menu-icon "><i class="fas fa-pound-sign "></i>
-                        <p></p>Get a<br/> quote</p>
-                    </div>
+                <div class="mobile-icon-wrapper">
+                    <a href="#">
+                        <a href="javascript:void(0);" onclick="showMobileSearch()">
+                        <div class="menu-icon"><i class="fas fa-search"></i>
+                            <p>Search</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="mobile-icon-wrapper">
+                    <a href="#">
+                        <div class="menu-icon"><i class="fas fa-map-marker-alt"></i>
+                            <p>Store</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="mobile-icon-wrapper">
+                    <a href="#">
+                        <div class="menu-icon "><i class="fas fa-pound-sign"></i>
+                            <p>Quote</p>
+                        </div>
+                    </a>
+                    <div class="count">99</div>
+                </div>
+                <div class="mobile-icon-wrapper">
+                    <a href="#">
+                        <div class="menu-icon"><i class="fas fa-shopping-cart"></i>
+                            <p>Basket</p>
+                        </div>
+                    </a>
                     <div class="count">99</div>
                 </div>
                 <div class="menu-icon-wrapper">
-                    <div class="menu-icon"><i class="fas fa-shopping-cart "></i>
-                        <p></p>Check<br/> out</p>
-                    </div>
+                    <a href="#">
+                        <div class="menu-icon"><i class="fas fa-map-marker-alt"></i>
+                            <p>Find a<br/> store</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="menu-icon-wrapper">
+                    <a href="#">
+                        <div class="menu-icon "><i class="fas fa-pound-sign"></i>
+                            <p>Get a<br/> quote</p>
+                        </div>
+                    </a>
+                    <div class="count">99</div>
+                </div>
+                <div class="menu-icon-wrapper">
+                    <a href="#">
+                        <div class="menu-icon"><i class="fas fa-shopping-cart"></i>
+                            <p class="menu-icon-text">Check<br/> out</p>
+                        </div>
+                    </a>
                     <div class="count">99</div>
                 </div>
             </div>
         </div>
-        <div class="nav-menu-wrapper">
+        <form autocomplete="off" id="mobile-search" class="hidden">
+            <div class="autocomplete" ;>
+                <input id="myInput" type="text" placeholder="Product categories">
+            </div>
+            <button class "mobile-search-button" type="submit"><i class="fas fa-search"></i>Find</button>
+        </form>
+        <div class="nav-menu-wrapper" id="dropdown-menu">
             <div class="nav-menu">
-                <ul>
-                    <li>Home</li>
-                    <li>Building Materials</li>
-                    <li>Timber and Hardware</li>
-                    <li>Kitchen and Bathrooms</li>
-                    <li>Flooring</li>
-                    <li>Landscaping</li>
-                    <li>Tool and plant hire</li>
-                    <li>Timber engineering</li>
-                </ul>
+                <div class="menu-item">Home</div>
+                <div class="menu-item" id="menu-2"><a href="javascript:void(0);" id="mobile-menu-2" onclick="showCategoryTitles(this.id)">Building Materials<i class="fas fa-chevron-down"></i></a>
+                    <div class="sub-menu" id="sub-menu-2">
+                        <div class="category-wrapper">
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-1" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-2" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-3" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-4" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-5" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-2-6" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 2<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" id="menu-3"><a href="javascript:void(0);" id="mobile-menu-3" onclick="showCategoryTitles(this.id)">Timber and Hardware<i class="fas fa-chevron-down"></i></a>
+                    <div class="sub-menu" id="sub-menu-3">
+                        <div class="category-wrapper">
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-1" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-2" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-3" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-4" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-5" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-3-6" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 3<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" id="menu-4"><a href="javascript:void(0);" id="mobile-menu-4" onclick="showCategoryTitles(this.id)">Kitchen and Bathrooms<i class="fas fa-chevron-down"></i></a>
+                    <div class="sub-menu" id="sub-menu-4">
+                        <div class="category-wrapper">
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-1" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-2" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-3" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-4" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-5" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-4-6" onclick="showCategories(this.id)">
+                                    <p class="category-title">Sub category title 4<i class="fas fa-chevron-down"></i></p>
+                                </a>
+                                <ul class="category-list">
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                    <li>Category name<i class="fas fa-chevron-right"></i></li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" id="menu-5"><a href="javascript:void(0);" id="mobile-menu-5" onclick="showCategoryTitles(this.id)">Flooring<i class="fas fa-chevron-down"></i>
+                    <div class="sub-menu" id="sub-menu-5">
+                        <div class="category-wrapper">
+                            <div class="column">
+                                <a href="javascript:void(0);" id="mobile-menu-5-1" onclick="showCategories(this.id)"><p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p></a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <a href="javascript:void(0);" id="mobile-menu-5-2" onclick="showCategories(this.id)">
+                        <p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p>
+                    </a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <a href="javascript:void(0);" id="mobile-menu-5-3" onclick="showCategories(this.id)">
+                        <p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p>
+                    </a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <a href="javascript:void(0);" id="mobile-menu-5-4" onclick="showCategories(this.id)">
+                        <p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p>
+                    </a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <a href="javascript:void(0);" id="mobile-menu-5-5" onclick="showCategories(this.id)">
+                        <p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p>
+                    </a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <a href="javascript:void(0);" id="mobile-menu-5-6" onclick="showCategories(this.id)">
+                        <p class="category-title">Sub category title 5<i class="fas fa-chevron-down"></i></p>
+                    </a>
+                    <ul class="category-list">
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        <li>Category name<i class="fas fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+                <br />
+            </div>
+        </div>
+        </div>
+        <div class="menu-item" id="menu-6"><a href="javascript:void(0);" id="mobile-menu-6" onclick="showCategoryTitles(this.id)">Landscaping<i class="fas fa-chevron-down"></i></a>
+            <div class="sub-menu" id="sub-menu-6">
+                <div class="category-wrapper">
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-1" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-2" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-3" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-4" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-5" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-6-6" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 6<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <br />
+
+                </div>
 
             </div>
         </div>
-       
-         <div class="sub-menu">
-             <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-             <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-       
-       <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-       
-       <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-       
-       <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-       
-       <div class="column"><h3>Sub category title</h3>
-             <ul>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-                 <li>Category name</li>
-             </ul>
-             </div>
-       
-       
-         </div>
-
+        <div class="menu-item" id="menu-7"><a href="javascript:void(0);" id="mobile-menu-7" onclick="showCategoryTitles(this.id)">Tool and plant hire<i class="fas fa-chevron-down"></i></a>
+            <div class="sub-menu" id="sub-menu-7">
+                <div class="category-wrapper">
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-1" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-2" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-3" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-4" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-5" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-7-6" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 7<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" id="menu-8"><a href="javascript:void(0);" id="mobile-menu-8" onclick="showCategoryTitles(this.id)">Timber engineering<i class="fas fa-chevron-down"></i></a>
+            <div class="sub-menu" id="sub-menu-8">
+                <div class="category-wrapper">
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-1" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-2" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-3" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-4" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-5" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <a href="javascript:void(0);" id="mobile-menu-8-6" onclick="showCategories(this.id)">
+                            <p class="category-title">Sub category title 8<i class="fas fa-chevron-down"></i></p>
+                        </a>
+                        <ul class="category-list">
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                            <li>Category name<i class="fas fa-chevron-right"></i></li>
+                        </ul>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="customer-information">
+            <p>Customer information</p>
+            <div class="menu-item">Ideas and advice<i class="fas fa-chevron-right"></i></div>
+            <div class="menu-item">Accounts and credit<i class="fas fa-chevron-right"></i></div>
+            <div class="menu-item">Delivery<i class="fas fa-chevron-right"></i></div>
+            <div class="menu-item">About<i class="fas fa-chevron-right"></i></div>
+        </div>
     </nav>
+    <script type="text/javascript" src="assets/js/menu.js"></script>
 </body>
-
 </html>
