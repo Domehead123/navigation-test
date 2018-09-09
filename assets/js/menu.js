@@ -50,12 +50,40 @@ function showCategories(clicked_id) {
     }
 }
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        var data_object = myObj.data.results;
+makeCorsRequest();
 
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // This is a sample server that supports CORS.
+  var url = 'https://www.adido-digital.co.uk/site/scripts/test.php';
+
+  var xhr = createCORSRequest('GET', url);
+  
+
+  // Response handlers.
+  xhr.onload = function() {
+    // var text = xhr.responseText;
+    
+    var myObj = JSON.parse(this.responseText);
+        var data_object = myObj.data.results;
+        
         var initial_array = Object.keys(data_object).map(function(key) {
             return [Number(key), data_object[key]];
         });
@@ -70,12 +98,12 @@ xmlhttp.onreadystatechange = function() {
             data_array.push(current_array);
         }
         autocomplete(document.getElementById("myInput"), data_array);
-    }
-};
+       
+  };
 
 
-xmlhttp.open("GET", "data.json", true);
-xmlhttp.send();
+  xhr.send();
+}
 
 
 
@@ -109,7 +137,7 @@ function autocomplete(inp, arr) {
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
-                    b.innerHTML = "<p><button class='basket'>Basket</button><button class='quote'>Quote</button><img src=" + image + ">" + arr[i][1][1]["value"] + "<span><br>Brand: " + arr[i][1][1]['brand'] + " | Weight: " + arr[i][1][1]['weight'] + " kg</span></p>";
+                    b.innerHTML = "<p><button class='basket'>Basket</button><button class='quote'>Quote</button><img src=" + image + " onerror='imgError(this);'>" + arr[i][1][1]["value"] + "<span><br>Brand: " + arr[i][1][1]['brand'] + " | Weight: " + arr[i][1][1]['weight'] + " kg</span></p>";
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     b.addEventListener("click", function(e) {
                         /*insert the value for the autocomplete text field:*/
@@ -183,4 +211,11 @@ function autocomplete(inp, arr) {
     document.addEventListener("click", function(e) {
         closeAllLists(e.target);
     });
+}
+
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "assets/images/error-image.png";
+    return true;
 }
