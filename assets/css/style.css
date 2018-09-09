@@ -307,7 +307,7 @@ button[type=submit] {
 
 .autocomplete-items {
     position: absolute;
-    width: 200%;
+    width: 150%;
     margin: 0 0 0 1px;
     border: 1px solid #d4d4d4;
     border-bottom: none;
